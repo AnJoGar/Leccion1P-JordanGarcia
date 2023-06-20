@@ -1,0 +1,138 @@
+<h1 class="page-title">Donante</h1>
+
+<div class="container mt-5">
+  <div class="row" column="2">
+
+    <form [formGroup]="miFormulario" (submit)="agregarDonante()">
+
+      <div class="input-group">
+
+
+        <div class="form-container">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-icon matPrefix>person</mat-icon>
+            <input matInput placeholder="Ingrese su nombre" formControlName="nombre">
+          </mat-form-field>
+        </div>
+
+        <div class="form-container">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-icon matPrefix>person</mat-icon>
+            <input matInput placeholder="Ingrese su apellido" formControlName="apellido">
+          </mat-form-field>
+        </div>
+
+        <div class="form-container">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-icon matPrefix>local_offer</mat-icon>
+            <input matInput placeholder="Ingrese el precio" formControlName="valorDonar">
+          </mat-form-field>
+        </div>
+
+
+
+        <h3></h3>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de Entrega</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="fechaEntrega" showTime="true">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+
+        <div class="container">
+          <div class="my-button">
+            <button mat-raised-button color="primary">
+              <mat-icon>add</mat-icon>
+              Add
+            </button>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+
+    </form>
+
+
+    <div class="col-lg-6 offset-lg-3 mt-3">
+      <div *ngIf="listDonante.length === 0" class="card p-2">
+        <h6>There are no registered Clients</h6>
+      </div>
+
+
+      <table class="table table-striped table-custom">
+
+        <thead>
+          <tr class="table-header">
+
+            <th style="background-color: #c9d9ed">Nombre</th>
+            <th style="background-color:#c9d9ed">Apellido</th>
+            <th style="background-color: #c9d9ed;">fechaEntrega</th>
+            <th style="background-color: #c9d9ed;">precio</th>
+            <th style="background-color: #c9d9ed;">Estado</th>
+            <th style="background-color:#c9d9ed;">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let donante of listDonante; let i = index">
+
+
+            <td>{{ donante.nombre }}</td>
+            <td>{{ donante.apellido }}</td>
+            <td>{{ donante.fechaEntrega | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ donante.valorDonar }}</td>
+            <td>
+              <span class="cursor" (click)="actualizarDonante(donante, i)">
+                <mat-icon [ngClass]="donante.estado ? 'text-black' : ''">
+                  {{ donante.estado ? 'check_circle' : 'circle' }}
+                </mat-icon>
+              </span>
+            </td>
+            <td>
+              <span class="cursor text-danger" (click)="eliminarDonante(i)">
+                <mat-icon>cancel</mat-icon>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+
+    </div>
+
+
+  </div>
+
+
+  <div>
+
+    <div style="margin-bottom: 20px;">
+      <h2>Lista de eliminados:</h2>
+      <ul>
+        <li *ngFor="let donante of listEliminados" class="donante-item">
+          <div class="donante-info">
+            <span class="nombre">{{ donante.nombre }} {{ donante.apellido }}</span>
+
+            <span class="fecha"> fechaEntrega:{{ donante.fechaEntrega | date: 'dd/MM/yyyy' }}</span>
+
+            <span class="valorDonar"> valorDonar: {{ donante.valorDonar }}</span>
+
+          </div>
+        </li>
+      </ul>
+      <p>Total recaudado: {{ totalEliminados }}</p>
+    </div>
+
+  </div>
+
+</div>

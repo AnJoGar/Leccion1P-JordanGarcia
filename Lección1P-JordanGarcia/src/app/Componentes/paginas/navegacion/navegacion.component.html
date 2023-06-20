@@ -1,0 +1,51 @@
+<mat-toolbar color="primary" style="background-color:#15648d">
+  <mat-toolbar-row>
+    <h1>Siatema de Donacion</h1>
+
+    <button mat-icon-button (click)="drawer.toggle();">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-sidenav-container>
+
+
+  <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" mode="side"
+    [opened]="false">
+    <!-- Contenido del sidenav -->
+    <mat-nav-list>
+
+      <mat-list-item routerLink="/paginas/donante">
+        <mat-icon mat-list-icon>person</mat-icon>
+        <div mat-line [style.color]="'white'">Donante</div>
+      </mat-list-item>
+
+      <h1></h1>
+      <h1></h1>
+      <h1></h1>
+      <h1></h1>
+
+      <mat-list-item routerLink="/paginas/programador">
+        <mat-icon mat-list-icon>swap_calls</mat-icon>
+        <div mat-line>Programador</div>
+      </mat-list-item>
+
+
+
+    </mat-nav-list>
+
+
+
+  </mat-sidenav>
+
+
+  <mat-sidenav-content>
+    <div style="height: 90vh">
+      <router-outlet></router-outlet>
+
+    </div>
+    <app-footer1></app-footer1>
+  </mat-sidenav-content>
+</mat-sidenav-container>

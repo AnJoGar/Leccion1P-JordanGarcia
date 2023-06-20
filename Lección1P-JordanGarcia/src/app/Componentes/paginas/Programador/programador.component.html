@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header class="custom-header">
+    <mat-card-title>Datos del programador</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <mat-card>
+          <img mat-card-image src="./assets/imagen.jpeg" alt="Foto" width="300" height="250" >
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card>
+          <mat-list>
+            <mat-list-item>
+              <h3 matLine class="custom-list-title">Nombre: {{ nombre }}</h3>
+              <span matLine class="custom-list-content">Apellido: {{ apellido }}</span>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine class="custom-list-title">Correo Electrónico:</h3>
+              <span matLine class="custom-list-content">{{ correoElectronico }}</span>
+            </mat-list-item>
+          </mat-list>
+          
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
